@@ -1,0 +1,56 @@
+swagger: "2.0"
+info:
+  title: beego Test API
+  description: beego has a very cool tools to autogenerate documents for your API
+  version: 1.0.0
+  termsOfService: http://beego.me/
+  contact:
+    email: astaxie@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+basePath: /v1
+paths:
+  /task/run:
+    put:
+      tags:
+      - task
+      operationId: TaskController.Run Task
+      parameters:
+      - in: query
+        name: id
+        description: "true"
+        type: integer
+        format: int64
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Error
+  /update/package:
+    post:
+      tags:
+      - update
+      operationId: UpdateController.Get update package
+      parameters:
+      - in: body
+        name: fileName
+        description: "true"
+        schema:
+          type: file
+        type: file
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Failed
+  /update/start:
+    post:
+      tags:
+      - update
+      operationId: UpdateController.Start update
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Failed
