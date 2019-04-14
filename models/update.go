@@ -11,21 +11,21 @@ var BackupPath = ""
 var UpdatePath = ""
 var WorkingDirectory = ""
 var NewFilesDirectory = ""
-var Separator = ""
+var Separator = string(filepath.Separator)
 
 //Path initialization
 func init(){
 
 	//Determine the running operating system to assign the Separator
-	switch runtime.GOOS {
-	case "windows":
-		Separator = "\\"
-	case "linux":
-		Separator = "/"
-	default:
-		log.Fatal("unsupported operating system: " + runtime.GOOS)
-	}
-	log.Println("Programmer is running on", runtime.GOOS)
+	//switch runtime.GOOS {
+	//case "windows":
+	//	Separator = "\\"
+	//case "linux":
+	//	Separator = "/"
+	//default:
+	//	log.Fatal("unsupported operating system: " + runtime.GOOS)
+	//}
+	log.Println("Programmer is running on", runtime.GOOS, "with", filepath.Separator, "as the separator")
 
 	//Get working directory to set update or backup path
 	WorkingDirectory, err := filepath.Abs(filepath.Dir(os.Args[0]))

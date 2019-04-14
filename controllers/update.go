@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"app/models"
+	"app/models/checksum"
 	"app/models/untar"
 	"app/webJsonServe"
 	"fmt"
@@ -70,6 +71,11 @@ func (u *UpdateController)Start(){
 		webJsonServe.ServeFailed(&u.Controller, 500, err.Error())
 		return
 	}
-
+	err = checksum.CheckMD5s()
+	if err != nil {
+		log.Println(err.Error())
+		webJsonServe.ServeFailed(&u.Controller, 500, err.Error())
+		return
+	}
 	webJsonServe.ServeSuccess(&u.Controller, "success", "")
 }
